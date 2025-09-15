@@ -1,5 +1,19 @@
+import Peliculas from "../../components/Peliculas/Peliculas";
 import React from "react";
-import { Link } from "react-router-dom"
+import Navbar from "../../components/Navbar/Navbar"
+
+
+function Pelis(){
+    return(
+    <React.Fragment>
+        <Navbar/>
+        <Peliculas/>
+    </React.Fragment>
+    )
+}
+
+
+export default Pelis;
 
 
 

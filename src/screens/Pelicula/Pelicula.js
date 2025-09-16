@@ -39,7 +39,7 @@ class PeliculaDetalle extends Component {
           <section className="detalle">
             <h2>{pelicula.title}</h2>
             <img
-              src={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}
+              src={`https://image.tmdb.org/t/p/w342${pelicula.poster_path}`}
               alt={pelicula.title}
             />
             <p>{pelicula.overview}</p>

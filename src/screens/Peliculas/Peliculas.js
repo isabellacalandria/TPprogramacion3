@@ -1,6 +1,7 @@
 import Peliculas from "../../components/Peliculas/Peliculas";
 import React from "react";
 import Navbar from "../../components/Navbar/Navbar"
+import Footer from "../../components/Footer/Footer";
 
 
 function Pelis(){
@@ -8,6 +9,8 @@ function Pelis(){
     <React.Fragment>
         <Navbar/>
         <Peliculas/>
+        <Footer/>
+        
     </React.Fragment>
     )
 }

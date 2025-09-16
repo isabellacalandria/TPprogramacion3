@@ -35,7 +35,7 @@ class Peliculas extends Component {
               : this.state.datos.map(pelicula => (
                 <article key={pelicula.id} className="single-card-movie">
                   <img
-                    src={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w342${pelicula.poster_path}`}
                     alt={pelicula.title}
                     className="card-img-top"
                   />

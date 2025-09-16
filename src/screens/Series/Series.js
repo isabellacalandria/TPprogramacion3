@@ -1,11 +1,16 @@
 import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
+import Series from "../../components/Series/Series";
+import Footer from "../../components/Footer/Footer";
 
-function Series() {
-  return <h2>Página de Series</h2>;
-  <React.Fragment>
-    <Navbar/>
-  </React.Fragment>
+function SeriesScreen() {
+  return (
+    <React.Fragment>
+      <Navbar />
+      <Series />
+      <Footer/>
+    </React.Fragment>
+  );
 }
 
-export default Series;
+export default SeriesScreen;

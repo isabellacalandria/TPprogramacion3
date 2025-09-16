@@ -1,43 +1,55 @@
-nav {
+/* Fondo y layout principal */
+.navbar-custom {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr auto;
     background-color: #eee;
     border-radius: 4px;
     margin-bottom: 20px;
-}
-.nav {
-    margin: 0 !important;
-}
-.nav a{
+    align-items: center;
+    padding: 0.5rem 1rem;
+  }
+  
+  /* Lista de links */
+  .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-list a {
     color: #444;
     text-decoration: none;
-}
-.nav a:hover{
+  }
+  
+  .nav-list a:hover {
     font-weight: bold;
-}
-.search-form, .filter-form {
-    padding: .5rem 1rem;
+  }
+  
+  /* Formulario de búsqueda */
+  .search-form {
     display: grid;
     grid-template-columns: 4fr 1fr;
-    column-gap: 5px;
-}
-.filter-form {
-    grid-template-columns: 1fr;
-}
-.search-form .btn-sm{
-    line-height: 1;
-    font-size: 0.9rem;
-}
-.search-form input,
-.filter-form input {
+    gap: 5px;
+  }
+  
+  .search-form input {
     border: 1px solid #ccc;
     border-radius: 4px;
-    padding-top: 3px;
-    vertical-align: middle;
-    line-height: 1;
+    padding: 4px;
     font-size: 1rem;
-    padding-bottom: 4px;
-}
-.filter-form input {
-    line-height: 1.5;
-}
+  }
+  
+  .btn-sm {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  
+  .btn-sm:hover {
+    background-color: #218838;
+  }

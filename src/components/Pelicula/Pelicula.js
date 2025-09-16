@@ -5,7 +5,7 @@ function Pelicula(props) {
   return (
     <article className="single-card-movie">
       <img
-        src={`https://image.tmdb.org/t/p/w500${props.imagen}`}
+        src={`https://image.tmdb.org/t/p/w342${props.imagen}`}
         alt={props.titulo}
         className="card-img-top"
       />

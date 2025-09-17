@@ -5,12 +5,48 @@ import "../Peliculas/Peliculas.css";
 class CardPelis extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       verMas: false,
       textoBoton: "Ver Mas",
       textoClassName: "infoTapada",
+      esFavorito: false,
     };
+  }
+
+  agregarAFavoritos(id) {
+    let favoritosLocal = localStorage.getItem("favoritos");
+    let favoritosParse = JSON.parse(favoritosLocal);
+
+    if (favoritosParse !== null) {
+      favoritosParse.push(id);
+      localStorage.setItem("favoritos", JSON.stringify(favoritosParse));
+    } else {
+      let nuevosFavoritos = [id];
+      localStorage.setItem("favoritos", JSON.stringify(nuevosFavoritos));
+    }
+
+    this.setState({ esFavorito: true });
+  }
+
+  sacarDeFavoritos(id) {
+    let favoritosLocal = localStorage.getItem("favoritos");
+    let favoritosParse = JSON.parse(favoritosLocal) || [];
+
+    let quitarFav = favoritosParse.filter((fav) => fav !== id);
+    localStorage.setItem("favoritos", JSON.stringify(quitarFav));
+
+    this.setState({ esFavorito: false });
+  }
+
+  componentDidMount() {
+    let favoritosLocal = localStorage.getItem("favoritos");
+    let favoritosParse = JSON.parse(favoritosLocal);
+
+    if (favoritosParse !== null) {
+      if (favoritosParse.includes(this.props.pelicula.id)) {
+        this.setState({ esFavorito: true });
+      }
+    }
   }
 
   cambiar() {
@@ -18,13 +54,13 @@ class CardPelis extends Component {
       this.setState({
         verMas: true,
         textoBoton: "Ver Menos",
-        textoClassName: "", 
+        textoClassName: "",
       });
     } else {
       this.setState({
         verMas: false,
         textoBoton: "Ver Mas",
-        textoClassName: "infoTapada", 
+        textoClassName: "infoTapada",
       });
     }
   }
@@ -53,6 +89,16 @@ class CardPelis extends Component {
           <Link to={`/peliculas/${pelicula.id}`} className="btn btn-primary">
             Ver detalle
           </Link>
+
+          {this.state.esFavorito ? (
+            <button onClick={() => this.sacarDeFavoritos(pelicula.id)}>
+              Sacar de favoritos
+            </button>
+          ) : (
+            <button onClick={() => this.agregarAFavoritos(pelicula.id)}>
+              Agregar a favoritos
+            </button>
+          )}
         </div>
       </article>
     );

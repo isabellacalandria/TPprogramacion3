@@ -11,9 +11,8 @@ function Pelicula(props) {
       />
       <div className="cardBody">
         <h5 className="card-title">{props.titulo}</h5>
-        {/* 👇 Esto navega a /peliculas/ID */}
         <Link to={`/peliculas/${props.id}`} className="btn btn-primary">
-          Ver más
+        Ver detalle
         </Link>
       </div>
     </article>

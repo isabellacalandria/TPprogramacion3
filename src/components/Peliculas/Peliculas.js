@@ -54,7 +54,7 @@ class Peliculas extends Component {
         <div className="load-more">
           <button 
             onClick={this.cargarPeliculas} 
-            className="cardButton"
+            className="btn btn-secondary"
           >
             Cargar más
           </button>

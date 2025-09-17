@@ -14,7 +14,7 @@ function CardSeries({ serie }) {
         <h5 className="card-title">{serie.name}</h5>
         <p className="card-text">{serie.overview}</p>
         <Link to={`/series/${serie.id}`} className="btn btn-primary">
-          Ver más
+        Ver detalle
         </Link>
       </div>
     </article>

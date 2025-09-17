@@ -84,7 +84,7 @@ class Home extends Component {
                   <div className="cardBody">
                     <h5 className="card-title">{pelicula.title}</h5>
                     <Link to={`/peliculas/${pelicula.id}`} className="btn btn-primary">
-                      Ver más
+                      Ver detalle
                     </Link>
                   </div>
                 </article>
@@ -111,7 +111,7 @@ class Home extends Component {
                   <div className="cardBody">
                     <h5 className="card-title">{serie.name}</h5>
                     <Link to={`/series/${serie.id}`} className="btn btn-primary">
-                      Ver más
+                    Ver detalle
                     </Link>
                   </div>
                 </article>
@@ -136,7 +136,7 @@ class Home extends Component {
                   />
                   <div className="cardBody">
                     <h5>{pelicula.title}</h5>
-                    <Link to={`/peliculas/${pelicula.id}`}>Ver mas</Link>
+                    <Link to={`/peliculas/${pelicula.id}`}>Ver detalle</Link>
                   </div>
                 </article>
               ))
@@ -160,7 +160,7 @@ class Home extends Component {
                   />
                   <div className="cardBody">
                     <h5>{serie.name}</h5>
-                    <Link to={`/series/${serie.id}`}>Ver más</Link>
+                    <Link to={`/series/${serie.id}`}>Ver detalle</Link>
                   </div>
                 </article>
               ))

@@ -12,7 +12,7 @@ function Serie(props) {
       <div className="cardBody">
         <h5 className="card-title">{props.titulo}</h5>
         <Link to={`/series/${props.id}`} className="btn btn-primary">
-          Ver más
+        Ver detalle
         </Link>
       </div>
     </article>

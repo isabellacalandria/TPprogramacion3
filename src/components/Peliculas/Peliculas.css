@@ -43,3 +43,12 @@
 .card-img-top{
     width: 100%;
 }
+.infoTapada {
+    display: none !important; 
+  }
+  
+  .more {
+    cursor: pointer;
+    text-decoration: underline;
+    margin: 5px 0;
+  }

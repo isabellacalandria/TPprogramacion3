@@ -5,8 +5,8 @@ import Series from "./screens/Series/Series";
 import Favoritas from "./screens/Favoritas/Favoritas";
 import PeliculaDetalle from "./screens/Pelicula/Pelicula";
 import SerieDetalle from "./screens/Serie/Serie";
-
-
+import PeliculasNP from "./screens/PeliculasNP/PeliculasNP";
+import SeriesAT from "./screens/SeriesAT/SeriesAT";
 
 
 
@@ -20,6 +20,8 @@ function App() {
       <Route path="/peliculas" component={Peliculas} />
       <Route path="/series"  component={Series} />
       <Route path="/favoritas"  component={Favoritas} /> 
+      <Route path="/peliculasNP" component={PeliculasNP} />
+      <Route path="/seriesAT" component={SeriesAT} />
       
     </Switch>
   );

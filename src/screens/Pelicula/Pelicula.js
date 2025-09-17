@@ -10,7 +10,7 @@ class PeliculaDetalle extends Component {
   }
 
   componentDidMount() {
-    const id = this.props.match.params.id; // 👈 tomamos el id de la URL
+    const id = this.props.match.params.id; 
 
     const options = {
       method: "GET",

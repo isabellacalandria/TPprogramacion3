@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import './Series.css';
+import '../Series/Series.css';
 import CardSeries from "../CardSeries/CardSeries";
 
-class Series extends Component {
+class SeriesAT extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,20 +22,19 @@ class Series extends Component {
       method: 'GET',
       headers: {
         accept: 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYmU4MGJiYTlkMTY4MzM3NDJlMzJjNGE0YTYwOWM2ZiIsIm5iZiI6MTc1NzQ0NzQ5OC4zOTEsInN1YiI6IjY4YzA4NTRhZTFjODBkMTE1NDk0ODFkYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WU-O3-2lU1lEcBmdUrfFr2eXUhO769kbRxlpHaz35GQ'
+        Authorization: 'Bearer TU_TOKEN_REAL' // <-- reemplazá por tu token
       }
     };
 
-    fetch(`https://api.themoviedb.org/3/tv/popular?language=en-US&page=${page}`, options)
-      .then(res => res.json())
+    fetch(`https://api.themoviedb.org/3/tv/airing_today?language=en-US&page=${page}`, options)
+      .then(response => response.json())
       .then(data => {
         this.setState({
-          datos: datos.concat(data.results), // sumamos, no reemplazamos
-          page: page + 1                     // próxima página
+          datos: this.state.datos.concat(data.results), // ✅ concat bien usado
+          page: page + 1
         });
       })
-      .catch(err => console.log("El error fue: " + err));
+      .catch(error => console.log("El error fue: " + error));
   }
 
   render() {
@@ -54,7 +53,7 @@ class Series extends Component {
         <div className="load-more">
           <button
             onClick={this.cargarSeries}
-            className="cardButton"  // misma clase que tus otros botones
+            className="cardButton"  // misma clase que los otros botones
           >
             Cargar más
           </button>
@@ -64,4 +63,4 @@ class Series extends Component {
   }
 }
 
-export default Series;
+export default SeriesAT;

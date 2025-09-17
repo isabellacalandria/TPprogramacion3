@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import './Series.css';
-import CardSeries from "../CardSeries/CardSeries";
+import '../Peliculas/Peliculas.css';
+import CardPelis from "../CardPelis/CardPelis";
 
-class Series extends Component {
+class PeliculasNP extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,10 +12,10 @@ class Series extends Component {
   }
 
   componentDidMount() {
-    this.cargarSeries();
+    this.cargarPeliculas();
   }
 
-  cargarSeries = () => {
+  cargarPeliculas = () => {
     const { page, datos } = this.state;
 
     const options = {
@@ -27,34 +27,34 @@ class Series extends Component {
       }
     };
 
-    fetch(`https://api.themoviedb.org/3/tv/popular?language=en-US&page=${page}`, options)
-      .then(res => res.json())
+    fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`, options)
+      .then(response => response.json())
       .then(data => {
         this.setState({
-          datos: datos.concat(data.results), // sumamos, no reemplazamos
-          page: page + 1                     // próxima página
+          datos: datos.concat(data.results), 
+          page: page + 1                      
         });
       })
-      .catch(err => console.log("El error fue: " + err));
+      .catch(error => console.log("El error fue: " + error));
   }
 
   render() {
     return (
       <>
-        <section className="row cards all-movies" id="series">
+        <section className="row cards all-movies" id="movies">
           {
             this.state.datos.length === 0
               ? <h3>Cargando...</h3>
-              : this.state.datos.map(serie => (
-                  <CardSeries key={serie.id} serie={serie} />
+              : this.state.datos.map(pelicula => (
+                  <CardPelis key={pelicula.id} pelicula={pelicula} />
                 ))
           }
         </section>
 
         <div className="load-more">
-          <button
-            onClick={this.cargarSeries}
-            className="cardButton"  // misma clase que tus otros botones
+          <button 
+            onClick={this.cargarPeliculas} 
+            className="cardButton"  
           >
             Cargar más
           </button>
@@ -64,4 +64,4 @@ class Series extends Component {
   }
 }
 
-export default Series;
+export default PeliculasNP;

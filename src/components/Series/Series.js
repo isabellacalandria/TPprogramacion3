@@ -7,7 +7,7 @@ class Series extends Component {
     super(props);
     this.state = {
       datos: [],
-      page: 1 // contador de página
+      page: 1 
     };
   }
 
@@ -31,8 +31,8 @@ class Series extends Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
-          datos: datos.concat(data.results), // sumamos, no reemplazamos
-          page: page + 1                     // próxima página
+          datos: datos.concat(data.results), 
+          page: page + 1                     
         });
       })
       .catch(err => console.log("El error fue: " + err));
@@ -54,7 +54,7 @@ class Series extends Component {
         <div className="load-more">
           <button
             onClick={this.cargarSeries}
-            className="cardButton"  // misma clase que tus otros botones
+            className="cardButton"  
           >
             Cargar más
           </button>

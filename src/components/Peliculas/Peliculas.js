@@ -7,7 +7,7 @@ class Peliculas extends Component {
     super(props);
     this.state = {
       datos: [],
-      page: 1 // ← contador de página
+      page: 1 
     };
   }
 

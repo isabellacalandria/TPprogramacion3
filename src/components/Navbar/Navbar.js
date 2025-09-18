@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import Busqueda from "../Busqueda/Busqueda"
 
 function Navbar() {
   return (
@@ -36,16 +37,7 @@ function Navbar() {
             <Link to="/favoritas">Favoritas</Link>
           </li>
         </ul>
-
-        <form className="search-form" onSubmit={(e) => e.preventDefault()}>
-          <input
-            type="search"
-            name="searchData"
-            placeholder="Buscar..."
-            aria-label="Buscar contenido"
-          />
-          <button type="submit" className="btn-sm">Buscar</button>
-        </form>
+        <Busqueda/>
       </nav>
     </header>
   );

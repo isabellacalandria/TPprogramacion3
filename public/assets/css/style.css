@@ -80,8 +80,25 @@
   
   .cardBody a:hover {
     background-color: #701112;
-    
   }
+.botonfav {
+  background-color: #701112;
+  color: #fff;
+  display: inline-block;
+  border-radius: 6px;
+  padding: 6px 14px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+.more{
+  background-color: #701112;
+  color: #fff;
+  display: inline-block;
+  border-radius: 6px;
+  padding: 6px 14px;
+  text-decoration: none;
+  margin-top: 10px;
+}
   .load-more a {
     display: inline-block;
     background-color:#701112;      

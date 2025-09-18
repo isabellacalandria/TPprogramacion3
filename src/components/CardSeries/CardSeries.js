@@ -10,7 +10,7 @@ class CardSeries extends Component {
       verMas: false,
       textoBoton: "Ver Mas",
       textoClassName: "infoTapada",
-      esFavorito: false, // 👈 agregado
+      esFavorito: false, 
     };
   }
 
@@ -79,9 +79,9 @@ class CardSeries extends Component {
         <div className="cardBody">
           <h5 className="card-title">{serie.name}</h5>
 
-          <p className="more" onClick={() => this.cambiar()}>
+          <button className="more" onClick={() => this.cambiar()}>
             {this.state.textoBoton}
-          </p>
+          </button>
 
           <p className={`card-text ${this.state.textoClassName}`}>
             {serie.overview}
@@ -92,11 +92,11 @@ class CardSeries extends Component {
           </Link>
 
           {this.state.esFavorito ? (
-            <button onClick={() => this.sacarDeFavoritos(serie.id)}>
+            <button onClick={() => this.sacarDeFavoritos(serie.id)} className="botonfav">
               Sacar de favoritos
             </button>
           ) : (
-            <button onClick={() => this.agregarAFavoritos(serie.id)}>
+            <button onClick={() => this.agregarAFavoritos(serie.id)} className="botonfav">
               Agregar a favoritos
             </button>
           )}

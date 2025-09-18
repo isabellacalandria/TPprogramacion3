@@ -29,7 +29,18 @@ class PeliculaDetalle extends Component {
 
   render() {
     const { pelicula } = this.state;
-
+    let textoGeneros = "";
+    if (pelicula) {
+      const generos = pelicula.genres;
+      if (generos) {
+        for (let i = 0; i < generos.length; i++) {
+          textoGeneros += generos[i].name;
+          if (i < generos.length - 1) {
+            textoGeneros += ", ";
+          }
+        }
+      }
+    }
     return (
       <React.Fragment>
         <Navbar />
@@ -42,10 +53,11 @@ class PeliculaDetalle extends Component {
               src={`https://image.tmdb.org/t/p/w342${pelicula.poster_path}`}
               alt={pelicula.title}
             />
-            <p>{pelicula.overview}</p>
+            <p><strong>Sinopsis: </strong>{pelicula.overview}</p>
             <p><strong>Fecha de estreno:</strong> {pelicula.release_date}</p>
             <p><strong>Duración:</strong> {pelicula.runtime} min</p>
-            <p><strong>Puntaje:</strong> {pelicula.vote_average}</p>
+            <p><strong>Calificacion:</strong> {pelicula.vote_average}</p>
+            <p><strong>Generos: </strong>{textoGeneros}</p>
           </section>
         )}
       </React.Fragment>

@@ -78,9 +78,9 @@ class CardPelis extends Component {
         <div className="cardBody">
           <h5 className="card-title">{pelicula.title}</h5>
 
-          <p className="more" onClick={() => this.cambiar()}>
+          <button className="more" onClick={() => this.cambiar()}>
             {this.state.textoBoton}
-          </p>
+          </button>
 
           <section className="extra">
             <p className={this.state.textoClassName}>{pelicula.overview}</p>
@@ -91,11 +91,11 @@ class CardPelis extends Component {
           </Link>
 
           {this.state.esFavorito ? (
-            <button onClick={() => this.sacarDeFavoritos(pelicula.id)}>
+            <button onClick={() => this.sacarDeFavoritos(pelicula.id)} className="botonfav">
               Sacar de favoritos
             </button>
           ) : (
-            <button onClick={() => this.agregarAFavoritos(pelicula.id)}>
+            <button onClick={() => this.agregarAFavoritos(pelicula.id)} className="botonfav">
               Agregar a favoritos
             </button>
           )}

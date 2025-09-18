@@ -10,7 +10,7 @@ class SerieDetalle extends Component {
   }
 
   componentDidMount() {
-    const id = this.props.match.params.id; // ID de la serie desde la URL
+    const id = this.props.match.params.id;
 
     const options = {
       method: "GET",
@@ -29,7 +29,18 @@ class SerieDetalle extends Component {
 
   render() {
     const { serie } = this.state;
-
+    let textoGeneros = "";
+    if (serie) {
+      const generos = serie.genres;
+      if (generos) {
+        for (let i = 0; i < generos.length; i++) {
+          textoGeneros += generos[i].name;
+          if (i < generos.length - 1) {
+            textoGeneros += ", ";
+          }
+        }
+      }
+    }
     return (
       <React.Fragment>
         <Navbar />
@@ -42,9 +53,10 @@ class SerieDetalle extends Component {
               src={`https://image.tmdb.org/t/p/w342${serie.poster_path}`}
               alt={serie.name}
             />
-            <p><strong>Sinopsis:</strong> {serie.overview}</p>
+            <p><strong>Sinopsis: </strong> {serie.overview}</p>
             <p><strong>Fecha de estreno:</strong> {serie.first_air_date}</p>
-            <p><strong>Calificación:</strong> {serie.vote_average}</p>
+            <p><strong>Calificación:</strong> {serie.vote_average}</p> 
+            <p><strong>Generos: </strong>{textoGeneros}</p>     
           </section>
         )}
       </React.Fragment>

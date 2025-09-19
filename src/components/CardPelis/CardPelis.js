@@ -15,19 +15,17 @@ class CardPelis extends Component {
 
   agregarAFavoritos(id) {
     let favoritosLocal = localStorage.getItem("favoritos");
-    let favoritosParse = JSON.parse(favoritosLocal);
+    
+    let favoritosParse = JSON.parse(favoritosLocal) || [];
 
-    if (favoritosParse !== null) {
+    
+    let repetidos = favoritosParse.filter((fav) => fav === id);
+    if (repetidos.length === 0) {
       favoritosParse.push(id);
       localStorage.setItem("favoritos", JSON.stringify(favoritosParse));
-    } else {
-      let nuevosFavoritos = [id];
-      localStorage.setItem("favoritos", JSON.stringify(nuevosFavoritos));
+      this.setState({ esFavorito: true });
     }
-
-    this.setState({ esFavorito: true });
   }
-
   sacarDeFavoritos(id) {
     let favoritosLocal = localStorage.getItem("favoritos");
     let favoritosParse = JSON.parse(favoritosLocal) || [];
@@ -37,15 +35,13 @@ class CardPelis extends Component {
 
     this.setState({ esFavorito: false });
   }
-
   componentDidMount() {
     let favoritosLocal = localStorage.getItem("favoritos");
-    let favoritosParse = JSON.parse(favoritosLocal);
+   
+    let favoritosParse = JSON.parse(favoritosLocal) || [];
 
-    if (favoritosParse !== null) {
-      if (favoritosParse.includes(this.props.pelicula.id)) {
-        this.setState({ esFavorito: true });
-      }
+    if (favoritosParse.includes(this.props.pelicula.id)) {
+      this.setState({ esFavorito: true });
     }
   }
 

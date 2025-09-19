@@ -7,7 +7,7 @@ class SeriesAT extends Component {
     super(props);
     this.state = {
       datos: [],
-      page: 1 // contador de página
+      page: 1 
     };
   }
 
@@ -22,7 +22,7 @@ class SeriesAT extends Component {
       method: 'GET',
       headers: {
         accept: 'application/json',
-        Authorization: 'Bearer TU_TOKEN_REAL' // <-- reemplazá por tu token
+        Authorization: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYmU4MGJiYTlkMTY4MzM3NDJlMzJjNGE0YTYwOWM2ZiIsIm5iZiI6MTc1NzQ0NzQ5OC4zOTEsInN1YiI6IjY4YzA4NTRhZTFjODBkMTE1NDk0ODFkYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WU-O3-2lU1lEcBmdUrfFr2eXUhO769kbRxlpHaz35GQ' // <-- reemplazá por tu token
       }
     };
 
@@ -30,7 +30,7 @@ class SeriesAT extends Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          datos: this.state.datos.concat(data.results), // ✅ concat bien usado
+          datos: this.state.datos.concat(data.results), 
           page: page + 1
         });
       })
@@ -53,7 +53,7 @@ class SeriesAT extends Component {
         <div className="load-more">
           <button
             onClick={this.cargarSeries}
-            className="cardButton"  // misma clase que los otros botones
+            className="cardButton"  
           >
             Cargar más
           </button>

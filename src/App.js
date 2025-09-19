@@ -24,6 +24,7 @@ function App() {
       <Route path="/peliculasNP" component={PeliculasNP} />
       <Route path="/seriesAT" component={SeriesAT} />
       <Route path="/resultados/:tipo/:query" component={Resultados} />
+      <Route path="/favoritas" component={Favoritas} />
       <Route component={Error}/>
     
       

@@ -8,6 +8,7 @@ import SerieDetalle from "./screens/Serie/Serie";
 import PeliculasNP from "./screens/PeliculasNP/PeliculasNP";
 import SeriesAT from "./screens/SeriesAT/SeriesAT";
 import Resultados from "./screens/Resultados/Resultados";
+import SeriesFav from "./screens/SeriesFav/SeriesFav"
 
 
 

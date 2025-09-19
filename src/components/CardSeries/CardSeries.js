@@ -10,23 +10,20 @@ class CardSeries extends Component {
       verMas: false,
       textoBoton: "Ver Mas",
       textoClassName: "infoTapada",
-      esFavorito: false, 
+      esFavorito: false,
     };
   }
 
   agregarAFavoritos(id) {
     let favoritosLocal = localStorage.getItem("favoritosSeries");
-    let favoritosParse = JSON.parse(favoritosLocal);
+    let favoritosParse = JSON.parse(favoritosLocal) || [];
 
-    if (favoritosParse !== null) {
+    let repetidos = favoritosParse.filter((fav) => fav === id);
+    if (repetidos.length === 0) {
       favoritosParse.push(id);
       localStorage.setItem("favoritosSeries", JSON.stringify(favoritosParse));
-    } else {
-      let nuevosFavoritos = [id];
-      localStorage.setItem("favoritosSeries", JSON.stringify(nuevosFavoritos));
+      this.setState({ esFavorito: true });
     }
-
-    this.setState({ esFavorito: true });
   }
 
   sacarDeFavoritos(id) {
@@ -41,12 +38,10 @@ class CardSeries extends Component {
 
   componentDidMount() {
     let favoritosLocal = localStorage.getItem("favoritosSeries");
-    let favoritosParse = JSON.parse(favoritosLocal);
+    let favoritosParse = JSON.parse(favoritosLocal) || [];
 
-    if (favoritosParse !== null) {
-      if (favoritosParse.includes(this.props.serie.id)) {
-        this.setState({ esFavorito: true });
-      }
+    if (favoritosParse.includes(this.props.serie.id)) {
+      this.setState({ esFavorito: true });
     }
   }
 
@@ -83,20 +78,26 @@ class CardSeries extends Component {
             {this.state.textoBoton}
           </button>
 
-          <p className={`card-text ${this.state.textoClassName}`}>
-            {serie.overview}
-          </p>
+          <section className="extra">
+            <p className={this.state.textoClassName}>{serie.overview}</p>
+          </section>
 
           <Link to={`/series/${serie.id}`} className="btn btn-primary">
             Ver detalle
           </Link>
 
           {this.state.esFavorito ? (
-            <button onClick={() => this.sacarDeFavoritos(serie.id)} className="botonfav">
+            <button
+              onClick={() => this.sacarDeFavoritos(serie.id)}
+              className="botonfav"
+            >
               Sacar de favoritos
             </button>
           ) : (
-            <button onClick={() => this.agregarAFavoritos(serie.id)} className="botonfav">
+            <button
+              onClick={() => this.agregarAFavoritos(serie.id)}
+              className="botonfav"
+            >
               Agregar a favoritos
             </button>
           )}

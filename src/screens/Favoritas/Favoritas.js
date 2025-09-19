@@ -13,7 +13,7 @@ class Favoritos extends Component {
   }
 
   componentDidMount() {
-    // ---------- Películas favoritas ----------
+
     let favoritosPeliculas = localStorage.getItem("favoritos");
     let favoritosParsePeliculas = JSON.parse(favoritosPeliculas) || [];
 
@@ -27,7 +27,7 @@ class Favoritos extends Component {
           method: "GET",
           headers: {
             accept: "application/json",
-            Authorization: "Bearer TU_TOKEN_AQUI",
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYmU4MGJiYTlkMTY4MzM3NDJlMzJjNGE0YTYwOWM2ZiIsIm5iZiI6MTc1NzQ0NzQ5OC4zOTEsInN1YiI6IjY4YzA4NTRhZTFjODBkMTE1NDk0ODFkYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WU-O3-2lU1lEcBmdUrfFr2eXUhO769kbRxlpHaz35GQ',
           },
         })
           .then((res) => res.json())
@@ -42,7 +42,6 @@ class Favoritos extends Component {
       }
     }
 
-    // ---------- Series favoritas ----------
     let favoritosSeries = localStorage.getItem("favoritosSeries");
     let favoritosParseSeries = JSON.parse(favoritosSeries) || [];
 
@@ -56,7 +55,7 @@ class Favoritos extends Component {
           method: "GET",
           headers: {
             accept: "application/json",
-            Authorization: "Bearer TU_TOKEN_AQUI",
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYmU4MGJiYTlkMTY4MzM3NDJlMzJjNGE0YTYwOWM2ZiIsIm5iZiI6MTc1NzQ0NzQ5OC4zOTEsInN1YiI6IjY4YzA4NTRhZTFjODBkMTE1NDk0ODFkYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WU-O3-2lU1lEcBmdUrfFr2eXUhO769kbRxlpHaz35GQ',
           },
         })
           .then((res) => res.json())

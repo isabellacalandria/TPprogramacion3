@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import '../Series/Series.css';
+import "../Series/Series.css";
 import CardSeries from "../CardSeries/CardSeries";
 
 class SeriesAT extends Component {
@@ -7,7 +7,10 @@ class SeriesAT extends Component {
     super(props);
     this.state = {
       datos: [],
-      page: 1 
+      page: 1,
+      seriesFiltradas: [],
+      textoInput: "",
+      cargando: true
     };
   }
 
@@ -15,49 +18,64 @@ class SeriesAT extends Component {
     this.cargarSeries();
   }
 
-  cargarSeries = () => {
-   
-
+  cargarSeries(){
     const options = {
-      method: 'GET',
+      method: "GET",
       headers: {
-        accept: 'application/json',
-        Authorization: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYmU4MGJiYTlkMTY4MzM3NDJlMzJjNGE0YTYwOWM2ZiIsIm5iZiI6MTc1NzQ0NzQ5OC4zOTEsInN1YiI6IjY4YzA4NTRhZTFjODBkMTE1NDk0ODFkYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WU-O3-2lU1lEcBmdUrfFr2eXUhO769kbRxlpHaz35GQ' // <-- reemplazá por tu token
+        accept: "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYmU4MGJiYTlkMTY4MzM3NDJlMzJjNGE0YTYwOWM2ZiIsIm5iZiI6MTc1NzQ0NzQ5OC4zOTEsInN1YiI6IjY4YzA4NTRhZTFjODBkMTE1NDk0ODFkYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WU-O3-2lU1lEcBmdUrfFr2eXUhO769kbRxlpHaz35GQ"
       }
     };
 
-    fetch(`https://api.themoviedb.org/3/tv/airing_today?language=en-US&page=${this.state.page}`, options)
-      .then(response => response.json())
-      .then(data => {
+    fetch(
+      `https://api.themoviedb.org/3/tv/airing_today?language=en-US&page=${this.state.page}`,
+      options
+    )
+      .then((response) => response.json())
+      .then((data) =>
         this.setState({
-          datos: this.state.datos.concat(data.results), 
-          page: this.state.page + 1
-        });
-      })
-      .catch(error => console.log("El error fue: " + error));
-  }
+          datos: this.state.datos.concat(data.results),
+          page: this.state.page + 1,
+          cargando: false
+        })
+      )
+      .catch((error) => console.log(error));
+  };
+
+  filtrar(e){
+    const texto = e.target.value;
+    const filtradas = this.state.datos.filter((serie) =>
+      serie.name.toLowerCase().includes(texto.toLowerCase())
+    );
+    this.setState({ seriesFiltradas: filtradas, textoInput: texto });
+  };
 
   render() {
     return (
       <>
-        <section className="row cards all-movies" id="series">
-          {
-            this.state.datos.length === 0
-              ? <h3>Cargando...</h3>
-              : this.state.datos.map(serie => (
-                  <CardSeries key={serie.id} serie={serie} />
+        <input
+          className="filtro-input"
+          placeholder="Filtrar Series"
+          onChange={(e) => this.filtrar(e)}
+          value={this.state.textoInput}
+        />
+        {this.state.cargando ? (
+          <p>Cargando...</p>
+        ) : (
+          <section className="row cards all-movies" id="series">
+            {this.state.textoInput.length === 0
+              ? this.state.datos.map((serie, idx) => (
+                  <CardSeries key={idx} serie={serie} />
                 ))
-          }
-        </section>
-
-        <div className="load-more">
-          <button
-            onClick={this.cargarSeries}
-            className="cardButton"  
-          >
-            Cargar más
-          </button>
-        </div>
+              : this.state.seriesFiltradas.map((serie, idx) => (
+                  <CardSeries key={idx} serie={serie} />
+                ))}
+          </section>
+        )}
+        <button onClick={() => this.cargarSeries()} className="btn-cargar">
+          CARGAR MÁS
+        </button>
       </>
     );
   }

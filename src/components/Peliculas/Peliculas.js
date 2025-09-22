@@ -11,11 +11,7 @@ class Peliculas extends Component {
     };
   }
 
-  componentDidMount() {
-    this.cargarPeliculas();
-  }
-
-  cargarPeliculas = () => {
+  cargarPeliculas() {
 
     const options = {
       method: 'GET',
@@ -36,33 +32,40 @@ class Peliculas extends Component {
       })
       .catch(error => console.log("El error fue: " + error));
   }
+  componentDidMount() {
+    // ✅ llamo a la función desde aquí
+    this.cargarPeliculas();
+  }
+
 
   render() {
     return (
       <>
-        <section className="row cards all-movies" id="movies">
-          {
-            this.state.datos.length === 0
-              ? <h3>Cargando...</h3>
-              : this.state.datos.map(pelicula => (
-                  <CardPelis key={pelicula.id} pelicula={pelicula} />
+        <input
+          className="filtro-input"
+          placeholder="Filtrar Películas"
+          onChange={(e) => this.filtrar(e)}
+          value={this.state.textoInput}
+        />
+        {this.state.cargando ? (
+          <p>Cargando...</p>
+        ) : (
+          <section className="row cards all-movies" id="movies">
+            {this.state.textoInput.length === 0
+              ? this.state.datos.map((pelicula, idx) => (
+                  <CardPelis key={idx} pelicula={pelicula} />
                 ))
-          }
-        </section>
-
-        <div className="load-more">
-          <button 
-            onClick={this.cargarPeliculas} 
-            className="btn btn-secondary"
-          >
-            Cargar más
-          </button>
-        </div>
+              : this.state.peliculasFiltradas.map((pelicula, idx) => (
+                  <CardPelis key={idx} pelicula={pelicula} />
+                ))}
+          </section>
+        )}
+        <button onClick={() => this.cargarPeliculas()} className="btn-cargar">
+          CARGAR MÁS
+        </button>
       </>
     );
   }
 }
 
 export default Peliculas;
-
-

@@ -1,74 +1,51 @@
-import { withRouter } from 'react-router-dom';
-import React, { Component } from 'react';
+import React from "react";
+import { Component } from "react";
+import { withRouter } from "react-router-dom";
+
 
 class Buscador extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      texto: "",
-      categoria: "movie"
-    };
-  }
-
-  actualizarTexto(e) {
-    this.setState({ texto: e.target.value });
-  }
-
-  seleccionarCategoria(e) {
-    this.setState({ categoria: e.target.value });
-  }
-
-  ejecutarBusqueda = (e) => {
-    e.preventDefault();
-    this.props.history.push(
-      "/RBusqueda/" + this.state.categoria + "/" + this.state.texto
-    );
-  };
-
-  render() {
-    return (
-      <section className="Buscador">
-        <form onSubmit={this.ejecutarBusqueda} className="search">
-          <div className="radios">
-            <label>
-              <input
-                type="radio"
-                name="categoria"
-                value="movie"
-                checked={this.state.categoria === "movie"}
-                onChange={(e) => this.seleccionarCategoria(e)}
-              />
-              Películas
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="categoria"
-                value="tv"
-                checked={this.state.categoria === "tv"}
-                onChange={(e) => this.seleccionarCategoria(e)}
-              />
-              Series
-            </label>
-          </div>
-
-          <input
-            type="text"
-            name="texto"
-            value={this.state.texto}
-            onChange={(e) => this.actualizarTexto(e)}
-            placeholder="Ingresá un título..."
-          />
-
-          <button type="submit" className="botones">
-            Buscar
-          </button>
-        </form>
-      </section>
-    );
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            busqueda: "", tipo: ""
+        }
+    }
+    prevenirRecarga(event){
+        event.preventDefault()
+        this.props.history.push("/resultados/" + this.state.tipo + "/" + this.state.busqueda);
+  
+    }
+    controlarCambios(event){
+        this.setState(
+            {busqueda: event.target.value          
+            })
+    }
+    controlarTipo(event){
+        this.setState(
+            {tipo: event.target.value          
+            })
+    }
+    render() {
+        return (
+            <section className="Formulario">
+                <div>
+                    <form className="buscador-form" onSubmit={(event) => this.prevenirRecarga(event)}>
+                        <input className="buscador-input" onChange={(event) => this.controlarCambios(event)} name="busqueda" value={this.state.busqueda}  />
+                        <label>Pelicula</label>
+                        <input type="radio" name="tipo" value="movie" onChange={(e)=> this.controlarTipo(e)} />
+                        <label>Serie</label>
+                        <input type="radio" name="tipo" value="tv" onChange={(e)=> this.controlarTipo(e)}/>
+                        <button className="buscador-btn" type="submit">Buscar</button>
+                    </form>
+                </div>
+            </section>
+        )
+    }
 }
-
 export default withRouter(Buscador);
+
+
+
+   
 
 

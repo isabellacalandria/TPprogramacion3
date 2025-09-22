@@ -63,11 +63,12 @@ class CardPelis extends Component {
 
   render() {
     const { pelicula } = this.props;
-
+    console.log(this.state.props);
+    
     return (
       <article key={pelicula.id} className="single-card-movie">
         <img
-          src={`https://image.tmdb.org/t/p/w342${pelicula.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w342${this.props.pelicula.poster_path}`}
           alt={pelicula.title}
           className="card-img-top"
         />

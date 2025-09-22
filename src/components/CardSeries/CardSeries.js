@@ -63,11 +63,12 @@ class CardSeries extends Component {
 
   render() {
     const { serie } = this.props;
+    console.log(this.state.props);
 
     return (
       <article key={serie.id} className="single-card-movie">
         <img
-          src={`https://image.tmdb.org/t/p/w342${serie.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w342${this.props.serie.poster_path}`}
           alt={serie.name}
           className="card-img-top"
         />

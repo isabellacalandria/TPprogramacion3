@@ -15,29 +15,29 @@ class CardSeries extends Component {
   }
 
   agregarAFavoritos(id) {
-    let favoritosLocal = localStorage.getItem("favoritosSeries");
+    let favoritosLocal = localStorage.getItem("seriesFavoritas");
     let favoritosParse = JSON.parse(favoritosLocal) || [];
 
     let repetidos = favoritosParse.filter((fav) => fav === id);
     if (repetidos.length === 0) {
       favoritosParse.push(id);
-      localStorage.setItem("favoritosSeries", JSON.stringify(favoritosParse));
+      localStorage.setItem("seriesFavoritas", JSON.stringify(favoritosParse));
       this.setState({ esFavorito: true });
     }
   }
 
   sacarDeFavoritos(id) {
-    let favoritosLocal = localStorage.getItem("favoritosSeries");
+    let favoritosLocal = localStorage.getItem("seriesFavoritas");
     let favoritosParse = JSON.parse(favoritosLocal) || [];
 
     let quitarFav = favoritosParse.filter((fav) => fav !== id);
-    localStorage.setItem("favoritosSeries", JSON.stringify(quitarFav));
+    localStorage.setItem("seriesFavoritas", JSON.stringify(quitarFav));
 
     this.setState({ esFavorito: false });
   }
 
   componentDidMount() {
-    let favoritosLocal = localStorage.getItem("favoritosSeries");
+    let favoritosLocal = localStorage.getItem("seriesFavoritas");
     let favoritosParse = JSON.parse(favoritosLocal) || [];
 
     if (favoritosParse.includes(this.props.serie.id)) {

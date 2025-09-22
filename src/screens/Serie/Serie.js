@@ -28,10 +28,9 @@ class SerieDetalle extends Component {
   }
 
   render() {
-    const { serie } = this.state;
     let textoGeneros = "";
-    if (serie) {
-      const generos = serie.genres;
+    if (this.state.serie) {
+      const generos = this.state.serie.genres;
       if (generos) {
         for (let i = 0; i < generos.length; i++) {
           textoGeneros += generos[i].name;
@@ -44,18 +43,18 @@ class SerieDetalle extends Component {
     return (
       <React.Fragment>
         <Navbar />
-        {!serie ? (
+        {!this.state.serie ? (
           <h3>Cargando...</h3>
         ) : (
           <section className="detalle">
-            <h2>{serie.name}</h2>
+            <h2>{this.state.serie.name}</h2>
             <img
-              src={`https://image.tmdb.org/t/p/w342${serie.poster_path}`}
-              alt={serie.name}
+              src={`https://image.tmdb.org/t/p/w342${this.state.serie.poster_path}`}
+              alt={this.state.serie.name}
             />
-            <p><strong>Sinopsis: </strong> {serie.overview}</p>
-            <p><strong>Fecha de estreno:</strong> {serie.first_air_date}</p>
-            <p><strong>Calificación:</strong> {serie.vote_average}</p> 
+            <p><strong>Sinopsis: </strong> {this.state.serie.overview}</p>
+            <p><strong>Fecha de estreno:</strong> {this.state.serie.first_air_date}</p>
+            <p><strong>Calificación:</strong> {this.state.serie.vote_average}</p> 
             <p><strong>Generos: </strong>{textoGeneros}</p>     
           </section>
         )}

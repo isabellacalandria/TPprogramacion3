@@ -16,7 +16,6 @@ class PeliculasNP extends Component {
   }
 
   cargarPeliculas = () => {
-    const { page, datos } = this.state;
 
     const options = {
       method: 'GET',
@@ -27,12 +26,12 @@ class PeliculasNP extends Component {
       }
     };
 
-    fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`, options)
+    fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${this.state.page}`, options)
       .then(response => response.json())
       .then(data => {
         this.setState({
-          datos: datos.concat(data.results), 
-          page: page + 1                      
+          datos: this.state.datos.concat(data.results), 
+          page: this.state.page + 1                      
         });
       })
       .catch(error => console.log("El error fue: " + error));

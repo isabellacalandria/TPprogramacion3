@@ -62,37 +62,36 @@ class CardPelis extends Component {
   }
 
   render() {
-    const { pelicula } = this.props;
-    console.log(this.state.props);
+    console.log(this.props);
     
     return (
-      <article key={pelicula.id} className="single-card-movie">
+      <article key={this.props.pelicula.id} className="single-card-movie">
         <img
           src={`https://image.tmdb.org/t/p/w342${this.props.pelicula.poster_path}`}
-          alt={pelicula.title}
+          alt={this.props.pelicula.title}
           className="card-img-top"
         />
         <div className="cardBody">
-          <h5 className="card-title">{pelicula.title}</h5>
+          <h5 className="card-title">{this.props.pelicula.title}</h5> 
 
           <button className="more" onClick={() => this.cambiar()}>
             {this.state.textoBoton}
           </button>
 
           <section className="extra">
-            <p className={this.state.textoClassName}>{pelicula.overview}</p>
+            <p className={this.state.textoClassName}>{this.props.pelicula.overview}</p>
           </section>
 
-          <Link to={`/peliculas/${pelicula.id}`} className="btn btn-primary">
+          <Link to={`/peliculas/${this.props.pelicula.id}`} className="btn btn-primary">
             Ver detalle
           </Link>
 
           {this.state.esFavorito ? (
-            <button onClick={() => this.sacarDeFavoritos(pelicula.id)} className="botonfav">
+            <button onClick={() => this.sacarDeFavoritos(this.props.pelicula.id)} className="botonfav">
               Sacar de favoritos
             </button>
           ) : (
-            <button onClick={() => this.agregarAFavoritos(pelicula.id)} className="botonfav">
+            <button onClick={() => this.agregarAFavoritos(this.props.pelicula.id)} className="botonfav">
               Agregar a favoritos
             </button>
           )}

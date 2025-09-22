@@ -16,7 +16,7 @@ class SeriesAT extends Component {
   }
 
   cargarSeries = () => {
-    const { page, datos } = this.state;
+   
 
     const options = {
       method: 'GET',
@@ -26,12 +26,12 @@ class SeriesAT extends Component {
       }
     };
 
-    fetch(`https://api.themoviedb.org/3/tv/airing_today?language=en-US&page=${page}`, options)
+    fetch(`https://api.themoviedb.org/3/tv/airing_today?language=en-US&page=${this.state.page}`, options)
       .then(response => response.json())
       .then(data => {
         this.setState({
           datos: this.state.datos.concat(data.results), 
-          page: page + 1
+          page: this.state.page + 1
         });
       })
       .catch(error => console.log("El error fue: " + error));

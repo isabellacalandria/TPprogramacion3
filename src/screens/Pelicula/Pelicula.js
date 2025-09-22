@@ -28,10 +28,9 @@ class PeliculaDetalle extends Component {
   }
 
   render() {
-    const { pelicula } = this.state;
     let textoGeneros = "";
-    if (pelicula) {
-      const generos = pelicula.genres;
+    if (this.state.pelicula) {
+      const generos = this.state.pelicula.genres;
       if (generos) {
         for (let i = 0; i < generos.length; i++) {
           textoGeneros += generos[i].name;
@@ -44,19 +43,19 @@ class PeliculaDetalle extends Component {
     return (
       <React.Fragment>
         <Navbar />
-        {!pelicula ? (
+        {!this.state.pelicula? (
           <h3>Cargando...</h3>
         ) : (
           <section className="detalle">
-            <h2>{pelicula.title}</h2>
+            <h2>{this.state.pelicula.title}</h2>
             <img
-              src={`https://image.tmdb.org/t/p/w342${pelicula.poster_path}`}
-              alt={pelicula.title}
+              src={`https://image.tmdb.org/t/p/w342${this.state.pelicula.poster_path}`}
+              alt={this.state.pelicula.title}
             />
-            <p><strong>Sinopsis: </strong>{pelicula.overview}</p>
-            <p><strong>Fecha de estreno:</strong> {pelicula.release_date}</p>
-            <p><strong>Duración:</strong> {pelicula.runtime} min</p>
-            <p><strong>Calificacion:</strong> {pelicula.vote_average}</p>
+            <p><strong>Sinopsis: </strong>{this.state.pelicula.overview}</p>
+            <p><strong>Fecha de estreno:</strong> {this.state.pelicula.release_date}</p>
+            <p><strong>Duración:</strong> {this.state.pelicula.runtime} min</p>
+            <p><strong>Calificacion:</strong> {this.state.pelicula.vote_average}</p>
             <p><strong>Generos: </strong>{textoGeneros}</p>
           </section>
         )}

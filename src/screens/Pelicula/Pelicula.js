@@ -47,17 +47,22 @@ class PeliculaDetalle extends Component {
           <h3>Cargando...</h3>
         ) : (
           <section className="detalle">
-            <h2>{this.state.pelicula.title}</h2>
+          <h2>{this.state.pelicula.title}</h2>
+          <div className="detalle-contenido">
             <img
+              className="img-detalle"
               src={`https://image.tmdb.org/t/p/w342${this.state.pelicula.poster_path}`}
               alt={this.state.pelicula.title}
             />
-            <p><strong>Sinopsis: </strong>{this.state.pelicula.overview}</p>
-            <p><strong>Fecha de estreno:</strong> {this.state.pelicula.release_date}</p>
-            <p><strong>Duración:</strong> {this.state.pelicula.runtime} min</p>
-            <p><strong>Calificacion:</strong> {this.state.pelicula.vote_average}</p>
-            <p><strong>Generos: </strong>{textoGeneros}</p>
-          </section>
+            <div className="detalle-texto">
+              <p><strong>Sinopsis: </strong>{this.state.pelicula.overview}</p>
+              <p><strong>Fecha de estreno:</strong> {this.state.pelicula.release_date}</p>
+              <p><strong>Duración:</strong> {this.state.pelicula.runtime} min</p>
+              <p><strong>Calificación:</strong> {this.state.pelicula.vote_average}</p>
+              <p><strong>Géneros: </strong>{textoGeneros}</p>
+            </div>
+          </div>
+        </section>
         )}
       </React.Fragment>
     );

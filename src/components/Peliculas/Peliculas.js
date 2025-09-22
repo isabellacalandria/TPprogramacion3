@@ -7,7 +7,7 @@ class Peliculas extends Component {
     super(props);
     this.state = {
       datos: [],
-      page: 2, // 👈 empieza en 2 porque vamos a traer la primera en componentDidMount
+      page: 2, 
       peliculasFiltradas: [],
       textoInput: "",
       cargando: true
@@ -15,7 +15,6 @@ class Peliculas extends Component {
   }
 
   componentDidMount() {
-    // ✅ Fetch directo de la primera página
     const options = {
       method: "GET",
       headers: {
